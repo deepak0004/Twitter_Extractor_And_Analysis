@@ -90,23 +90,17 @@ router.get('/get_retweet_count', function(req, res, next) {
 						}else{
 							tweets["< 100"] = 1;
 						}
-					}else if(item.retweeted_status.retweet_count > 100){
+					}else if(item.retweeted_status.retweet_count < 200){
 						if(tweets["100 < x < 200"]){
 							tweets["100 < x < 200"] += 1;
 						}else{
 							tweets["100 < x < 200"] = 1;
 						}
-					}else if(item.retweeted_status.retweet_count > 200){
-						if(tweets["200 < x < 300"]){
-							tweets["200 < x < 300"] += 1;
-						}else{
-							tweets["200 < x < 300"] = 1;
-						}
 					}else{
-						if(tweets[">300"]){
-							tweets[">300"] += 1;
+						if(tweets[">200"]){
+							tweets[">200"] += 1;
 						}else{
-							tweets[">300"] = 1;
+							tweets[">200"] = 1;
 						}
 					}
 			}else{

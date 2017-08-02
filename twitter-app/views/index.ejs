@@ -73,7 +73,7 @@ ol li{
         </ol>
   		</div>
   		<div class="data">
-  			<h2>Distribution of Original Tweets vs Retweeted Tweets</h2>
+  			<h2>Distribution of Retweeted Tweets</h2>
 		    <div id="curve_chart" style="width: 100%; height: 500px;"></div>
   		</div>
   		<div class="data">
@@ -173,34 +173,30 @@ ol li{
     			type: 'get',
     			success: function(x){
     				// console.log(x);	
-
 						
     				var fav_count = new Array();
-    				fav_count[0] = ['Retweet Distribution', 'Number'];
+    				fav_count[0] = ['Number of Retweets', 'Original Tweet Count'];
     				i = 1;
 
             //console.log(x);
-
     				for(var l in x){
   						fav_count[i] = [l, x[l]];
 	  					i++;	
     				}
 
-
     				google.charts.setOnLoadCallback(drawChart);
 			      function drawChart() {
-			        var data = google.visualization.arrayToDataTable(fav_count, false);
+  			      var data = google.visualization.arrayToDataTable(fav_count, false);
 
-			        var options = {
-			          title: 'Retweet Distribution',
-			          legend: { position: 'bottom' }
-			        };
+  			      var options = {
+  			          title: 'Retweet Distribution',
+  			          legend: { position: 'bottom' }
+  			      };
 
-			        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  			      var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
 			        chart.draw(data, options);
 			      }
-
     			}
     		});
 
