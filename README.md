@@ -34,4 +34,5 @@ Most of dependencies could be installed using pip.
 + https://coolprof.wordpress.com/2014/10/19/tweepy-and-pymongo-retrieving-and-storing-tweets-in-mongodb/
 + https://pythonprogramming.net/twitter-api-streaming-tweets-python-tutorial/?completed=/mysql-live-database-example-streaming-data/
 + https://github.com/SamDelgado/twitter-to-mongo/blob/master/twitter-to-mongo.py
++ https://developers.google.com/chart/
 
