@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<style type="text/css">
+*{
+	 box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #093028;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #237A57, #093028);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #237A57, #093028); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}	
+
+#containter{
+	position: absolute;
+	top:0;
+	width: 100%;
+	margin: 0 auto;
+	height: 100%;
+	z-index: 10000;
+}
+
+h1, h2{
+	text-align: center;
+	color:white;
+}
+
+#data_visualise{
+	overflow: auto;
+	width:80%;
+	margin:0 auto;
+}
+
+.data{
+	width:80%;
+	margin:1%;
+	margin:0 auto;
+	border:1px solid #fff;
+	margin-bottom: 20px;
+}
+
+ol{
+	overflow: auto;
+}
+
+ol li{
+	color:white;
+	font-weight: bold;
+	font-size: 1.2em;
+	margin:10px 30px 10px 30px;
+	float: left;
+}
+</style>
+</head>
+
+
+<body>
+  <div id="containter">
+  	<h1><i>Twitter Data Analysis</i></h1>
+  	<hr style="width:80%;height:1px;border:none;background-color: white;">
+
+  		<div class="data" style="margin-top: 20px;">
+  			<h2>Location Analysis</h2>
+		    <div id="chart_div" style="width: 100%; height: 500px;"></div>
+
+  		</div>
+  		<div class="data">
+  			<h2>Top 10 Hash Tags</h2>
+  			<ol id="show_top_ten">
+        </ol>
+  		</div>
+  		<div class="data">
+  			<h2>Distribution of Original Tweets vs Retweeted Tweets</h2>
+		    <div id="curve_chart" style="width: 100%; height: 500px;"></div>
+  		</div>
+  		<div class="data">
+  			<h2>Types Of Tweets</h2>
+		    <div id="curve_chart2" style="width: 100%; height: 500px;"></div>
+  		</div>
+
+  </div>
+
+
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  
+    <script type='text/javascript'>
+     google.charts.load('current', {
+       'packages': ['geochart'],
+       // Note: you will need to get a mapsApiKey for your project.
+       // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+       'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+     });
+     
+      google.charts.load('current', {'packages':['corechart']});
+
+    </script>
+
+    <script type="text/javascript">
+    	$(function(){
+    		$.ajax({
+    			url: '/get_locations',
+    			type: 'get',
+    			success: function(x){
+    				// console.log(x);	
+    				var loc_data = new Array();
+    				loc_data[0] = ['Countries', 'Tweets'];
+    				i = 1;
+    				for(var l in x){
+    					if(l!=null && l!="null" && l!="" && l!="..."){
+    						loc_data[i] = [l, x[l]];
+	    					i++;	
+	    				}
+    				}
+
+    				google.charts.setOnLoadCallback(drawMarkersMap);
+
+			      function drawMarkersMap() {
+
+							var data = google.visualization.arrayToDataTable(loc_data, false);
+
+				      var options = {
+				        displayMode: 'markers',
+				        colorAxis: {colors: ['indigo', 'seagreen', 'tomato']}
+				      };
+
+				      var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+				      chart.draw(data, options);
+			   	 };
+
+    			}
+    		});
+    		$.ajax({
+    			url: '/get_text_image',
+    			type: 'get',
+    			success: function(x){
+    				// console.log(x);	
+    				google.charts.setOnLoadCallback(drawChart2);
+			      function drawChart2() {
+			        var data = google.visualization.arrayToDataTable(x, false);
+
+			        var options2 = {
+			          title: 'Tweet Types',
+			          legend: { position: 'bottom' }
+			        };
+
+			        var chart = new google.visualization.PieChart(document.getElementById('curve_chart2'));
+
+			        chart.draw(data, options2);
+			      }
+
+    			}
+    		});
+
+    		$.ajax({
+    			url: '/get_top_ten',
+    			type: 'get',
+    			success: function(x){
+    				var html = "";
+    				for(var z in x){
+    					html += '<li>'+x[z]+'</li>';
+    				}
+    				$('#show_top_ten').html(html);
+    			}
+    		});
+
+    		$.ajax({
+    			url: '/get_retweet_count',
+    			type: 'get',
+    			success: function(x){
+    				// console.log(x);	
+
+						
+    				var fav_count = new Array();
+    				fav_count[0] = ['Retweet Distribution', 'Number'];
+    				i = 1;
+
+            //console.log(x);
+
+    				for(var l in x){
+  						fav_count[i] = [l, x[l]];
+	  					i++;	
+    				}
+
+
+    				google.charts.setOnLoadCallback(drawChart);
+			      function drawChart() {
+			        var data = google.visualization.arrayToDataTable(fav_count, false);
+
+			        var options = {
+			          title: 'Retweet Distribution',
+			          legend: { position: 'bottom' }
+			        };
+
+			        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+			        chart.draw(data, options);
+			      }
+
+    			}
+    		});
+
+    	});
+    </script>
+
+
+
+</body>
+
+</html>
