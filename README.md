@@ -29,6 +29,7 @@ The data collected from Twitter is stored in a MongoDB collection. From the cura
 
 Most of dependencies could be installed using pip.
 
+#### I have attached image of app (having the analysis) for your perusal.
 
 ### References:
 + https://coolprof.wordpress.com/2014/10/19/tweepy-and-pymongo-retrieving-and-storing-tweets-in-mongodb/
