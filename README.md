@@ -3,9 +3,9 @@
 The data collected from Twitter is stored in a MongoDB collection. From the curated tweets, Web Application showcases:
 1. Locations of the Tweet 
 2. List of Top 10 Hashtags being used in the stream
-3. Distribution of Original Tweets vs Retweeted Tweets
+3. Distribution of favorite counts on Original Tweets
 4. Distribution of favorite counts on Original Tweets
-
+5. Distribution of Type of Tweet i.e. Text, Image, Text+Image
 
 ### Methodology:
 1. Used Twitter REST API to search for tweets containing hashtags relevant to PM Narendra Modi and Delhi CM Arvind Kejriwal.
