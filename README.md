@@ -8,8 +8,6 @@ The data collected from Twitter is stored in a MongoDB collection. From the cura
 
 
 ### Methodology:
-
-###### Tweets Extraction and Storage:
 1. Used Twitter REST API to search for tweets containing hashtags relevant to PM Narendra Modi and Delhi CM Arvind Kejriwal.
 2. Store the tweets in MongoDb.
 3. Using the database, I made a webapp using node-js having different charts analysing the tweets. 
