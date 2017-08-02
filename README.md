@@ -7,10 +7,17 @@ The data collected from Twitter is stored in a MongoDB collection. From the cura
 4. Distribution of favorite counts on Original Tweets
 
 
-### Approach
+### Methodology:
 
+###### Tweets Extraction and Storage:
+1. Used Twitter REST API to search for tweets containing hashtags relevant to PM Narendra Modi and Delhi CM Arvind Kejriwal.
+2. Store the tweets in MongoDb.
+3. Using the database, I made a webapp using node-js having different charts analysing the tweets. 
 
-
+### Running:
+1. Download the node-js app loaded.
+2. Put the database uploaded on your localhost (MongoDb). I have attached the code which produces the database.
+3. Run the app using npm start from terminal.
 
 ### Requirements:
 1. Python 2.7 
@@ -19,10 +26,14 @@ The data collected from Twitter is stored in a MongoDB collection. From the cura
 4. NLTK 
 5. Numpy 
 6. Scipy 
+7. Node Js
+8. MongoDb
 
 Most of dependencies could be installed using pip.
 
 
-### References
+### References:
 + https://coolprof.wordpress.com/2014/10/19/tweepy-and-pymongo-retrieving-and-storing-tweets-in-mongodb/
 + https://pythonprogramming.net/twitter-api-streaming-tweets-python-tutorial/?completed=/mysql-live-database-example-streaming-data/
++ https://github.com/SamDelgado/twitter-to-mongo/blob/master/twitter-to-mongo.py
+
