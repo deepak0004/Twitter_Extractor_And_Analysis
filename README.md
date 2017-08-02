@@ -3,9 +3,8 @@
 The data collected from Twitter is stored in a MongoDB collection. From the curated tweets, Web Application showcases:
 1. Locations of the Tweet 
 2. List of Top 10 Hashtags being used in the stream
-3. Distribution of favorite counts on Original Tweets
-4. Distribution of favorite counts on Original Tweets
-5. Distribution of Type of Tweet i.e. Text, Image, Text+Image
+3. Distribution of Retweeted Tweets 
+4. Distribution of Type of Tweet i.e. Text, Image, Text+Image
 
 ### Methodology:
 1. Used Twitter REST API to search for tweets containing hashtags relevant to PM Narendra Modi and Delhi CM Arvind Kejriwal.
@@ -16,6 +15,7 @@ The data collected from Twitter is stored in a MongoDB collection. From the cura
 1. Download the node-js app loaded.
 2. Put the database uploaded on your localhost (MongoDb). I have attached the code which produces the database.
 3. Run the app using npm start from terminal.
+4. Open localhost:3000 to run the app.
 
 ### Requirements:
 1. Python 2.7 
