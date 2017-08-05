@@ -1,4 +1,4 @@
-## Twitter_Extractor_And_Analysis (Task A)
+## Twitter_Extractor_And_Analysis
 
 The data collected from Twitter is stored in a MongoDB collection. From the curated tweets, Web Application showcases:
 1. Locations of the Tweet 
